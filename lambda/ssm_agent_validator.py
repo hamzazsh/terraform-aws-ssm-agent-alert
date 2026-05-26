@@ -72,7 +72,7 @@ def lambda_handler(event, context):
             instance_id,
         )
 
-        last_ping = ssm_info.get("LastPingDateTime", "Unknown")
+        last_ping = ssm_info.get("LastPingDateTime") or "Unknown"
         if hasattr(last_ping, "strftime"):
             last_ping = last_ping.strftime("%Y-%m-%d %H:%M:%S UTC")
 

@@ -208,7 +208,7 @@ instances increase this (e.g. `60`).
 | Required | NO |
 | Default | `{}` |
 
-The module always adds `Module = "ssm-ping-alert"` and `Customer = <project_name>` automatically.
+The module always adds `Module = "ssm-ping-alert"` and `Project = <project_name>` automatically.
 
 ---
 

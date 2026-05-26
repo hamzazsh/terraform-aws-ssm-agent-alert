@@ -5,7 +5,7 @@ A reusable Terraform module that sets up automated alerting when an EC2 instance
 ## Architecture
 
 ```
-EventBridge Scheduler (every 5 minutes)
+EventBridge Rule (every 5 minutes)
         │
         ▼
   AWS Lambda
@@ -38,7 +38,7 @@ terraform plan
 terraform apply
 ```
 
-See `DEPLOYMENT.md` for the full step-by-step deployment guide.
+See [`docs/DEPLOYMENT.md`](docs/DEPLOYMENT.md) for the full step-by-step deployment guide.
 
 ## Inputs
 
@@ -82,9 +82,10 @@ terraform-module-ssm-ping-alert/
 │       └── main.yml
 ├── lambda/
 │   └── ssm_agent_validator.py  # Python 3.12 Lambda source
+├── docs/
+│   └── DEPLOYMENT.md           # Full deployment guide
 ├── .gitignore
 ├── .pre-commit-config.yaml
-├── DEPLOYMENT.md               # Full deployment guide
 ├── LICENSE
 ├── main.tf                     # All AWS resources
 ├── outputs.tf                  # Module outputs
