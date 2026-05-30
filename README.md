@@ -1,25 +1,14 @@
 # terraform-module-ssm-ping-alert
 
+<img src="https://github.com/user-attachments/assets/a09f3eff-3e08-4a3c-b490-71117a40080b" width="460" height="100"/><br>
+
 A reusable Terraform module that sets up automated alerting when an EC2 instance's SSM Agent goes offline while the instance is still running. Deploy it into any customer AWS account by sourcing it from a caller directory.
 
 ## Architecture
 
-```
-EventBridge Rule (every 5 minutes)
-        │
-        ▼
-  AWS Lambda
-  - calls ssm:DescribeInstanceInformation
-  - finds all instances where PingStatus = ConnectionLost
-  - cross-checks with EC2: is the instance actually running?
-  - skips instances within the boot grace period
-        │
-        ├── running + ConnectionLost → ALERT
-        └── stopped / terminated    → skip (intentional shutdown)
-        │
-        ▼
-  Amazon SNS → Email
-```
+<picture>
+  <img alt="SSM Ping Alert Architecture" src="docs/assets/ssm-ping-alert-correct-diagram.png">
+</picture>
 
 ## Prerequisites
 
@@ -83,6 +72,8 @@ terraform-module-ssm-ping-alert/
 ├── lambda/
 │   └── ssm_agent_validator.py  # Python 3.12 Lambda source
 ├── docs/
+│   ├── assets/
+│   │   └── ssm-ping-alert-correct-diagram.png
 │   └── DEPLOYMENT.md           # Full deployment guide
 ├── .gitignore
 ├── .pre-commit-config.yaml
